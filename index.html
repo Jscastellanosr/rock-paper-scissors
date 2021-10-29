@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p class="answer"></p>
+
+    <script>
+        let input = prompt('input') 
+        input = input.toLowerCase();
+        console.log(`user: ${input}`);
+        let answer = document.querySelector(".answer");
+        let x = Math.ceil(Math.random()*3);
+        let a;
+
+        function computerAnswer() {
+            if(x == 1)
+                a = 'rock';
+            else if(x == 2) 
+                a = 'paper';
+             else
+                a = 'scissors';
+            answer.textContent = a;
+            return a;
+        }
+
+        let m = "Computer wins!";
+        let n = "User wins!";
+        let o = 'Tie!';
+        let p = 'Invalid input';
+
+        let winner;
+        let loser;
+
+        function comparison (userAnswer, compAnswer) {
+            console.log(`computer: ${compAnswer}`);
+
+            if (userAnswer == compAnswer){
+                console.log(o);
+                return(o);
+                }
+            else if (userAnswer =='rock')
+                if (compAnswer == 'scissors'){
+                    console.log(n);
+                    winner = userAnswer;
+                    loser = compAnswer;
+                    return(`${n} ${winner} beats ${loser}.`);
+                }
+                else {
+                    console.log(m);
+                    winner = compAnswer;
+                    loser = userAnswer;
+                    return(`${m} ${winner} beats ${loser}.`);
+                }
+            else if (userAnswer == 'scissors')
+                 if (compAnswer == 'paper'){
+                    console.log(n);
+                    winner = userAnswer;
+                    loser = compAnswer;
+                    return(`${n} ${winner} beats ${loser}.`);
+                    }
+                else {
+                    console.log(m);
+                    winner = compAnswer;
+                    loser = userAnswer;
+                    return(`${m} ${winner} beats ${loser}.`);
+                    }
+            else if (userAnswer == 'paper') 
+                 if (compAnswer == 'rock'){
+                     console.log(n);
+                     winner = userAnswer;
+                     loser = compAnswer;
+                     return(`${n} ${winner} beats ${loser}.`);
+                 }
+                else {
+                    console.log(m);
+                    winner = compAnswer;
+                    loser = userAnswer;
+                    return(`${m} ${winner} beats ${loser}.`);
+                }
+            else {
+                console.log(p);
+                return(p);
+            }
+        } 
+
+
+        alert(comparison(input, computerAnswer()));
+
+        
+    </script>
+
+
+
+</body>
+</html>
