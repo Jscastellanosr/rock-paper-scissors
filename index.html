@@ -11,14 +11,18 @@
     <p class="answer"></p>
 
     <script>
-        let input = prompt('input') 
-        input = input.toLowerCase();
-        console.log(`user: ${input}`);
-        let answer = document.querySelector(".answer");
-        let x = Math.ceil(Math.random()*3);
+        let input;
         let a;
+        
+        let answer = document.querySelector(".answer");
+
+        function ask() {
+            let answ = prompt('input') 
+            input = answ.toLowerCase();
+        }
 
         function computerAnswer() {
+            let x = Math.ceil(Math.random()*3);
             if(x == 1)
                 a = 'rock';
             else if(x == 2) 
@@ -37,8 +41,11 @@
         let winner;
         let loser;
 
-        function comparison (userAnswer, compAnswer) {
-            console.log(`computer: ${compAnswer}`);
+        let compScore = 0;
+        let userScore = 0;
+
+        function comparison (compAnswer, userAnswer) {
+            
 
             if (userAnswer == compAnswer){
                 console.log(o);
@@ -49,12 +56,14 @@
                     console.log(n);
                     winner = userAnswer;
                     loser = compAnswer;
+                    userScore++;
                     return(`${n} ${winner} beats ${loser}.`);
                 }
                 else {
                     console.log(m);
                     winner = compAnswer;
                     loser = userAnswer;
+                    compScore++;
                     return(`${m} ${winner} beats ${loser}.`);
                 }
             else if (userAnswer == 'scissors')
@@ -62,26 +71,30 @@
                     console.log(n);
                     winner = userAnswer;
                     loser = compAnswer;
+                    userScore++;
                     return(`${n} ${winner} beats ${loser}.`);
                     }
                 else {
                     console.log(m);
                     winner = compAnswer;
                     loser = userAnswer;
-                    return(`${m} ${winner} beats ${loser}.`);
+                    compScore++;
+                    return(`${m} ${winner} beats ${loser}.`);                    
                     }
             else if (userAnswer == 'paper') 
                  if (compAnswer == 'rock'){
                      console.log(n);
                      winner = userAnswer;
                      loser = compAnswer;
-                     return(`${n} ${winner} beats ${loser}.`);
+                     userScore++;
+                     return(`${n} ${winner} beats ${loser}.`);                    
                  }
                 else {
                     console.log(m);
                     winner = compAnswer;
                     loser = userAnswer;
-                    return(`${m} ${winner} beats ${loser}.`);
+                    compScore++;
+                    return(`${m} ${winner} beats ${loser}.`);                   
                 }
             else {
                 console.log(p);
@@ -89,9 +102,20 @@
             }
         } 
 
+        for (let i = 0; i < 5; i++) {
+        ask();
+        alert(comparison(computerAnswer(), input));
+        }
 
-        alert(comparison(input, computerAnswer()));
+        if (compScore > userScore)
+            alert(`Computer has won the game!`);
+        else if (compScore < userScore)
+            alert(`User has won the game!`);
+        else 
+            alert(`Tie!`);
 
+        answer.textContent = (`Computer score: ${compScore} \n User score:${userScore}`);
+        
         
     </script>
 
